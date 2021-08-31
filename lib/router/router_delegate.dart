@@ -5,6 +5,7 @@ import 'package:navigation_app/router/ui_pages.dart';
 import 'package:navigation_app/ui/cart.dart';
 import 'package:navigation_app/ui/checkout.dart';
 import 'package:navigation_app/ui/create_account.dart';
+import 'package:navigation_app/ui/details.dart';
 import 'package:navigation_app/ui/list_items.dart';
 import 'package:navigation_app/ui/login.dart';
 import 'package:navigation_app/ui/settings.dart';
@@ -245,5 +246,57 @@ class ShoppingRouterDelegate extends RouterDelegate<PageConfiguration>
 
     appState.resetCurrentAction();
     return List.of(_pages);
+  }
+
+  /// deep links parser
+  void parseRoute(Uri? uri) {
+    if (uri == null || uri.pathSegments.isEmpty) {
+      setNewRoutePath(SplashPageConfig);
+      return;
+    }
+
+    // Handle navapp://deeplinks/details/#
+    if (uri.pathSegments.length == 2) {
+      if (uri.pathSegments[0] == 'details') {
+        pushWidget(Details(int.parse(uri.pathSegments[1])), DetailsPageConfig);
+      }
+    } else if (uri.pathSegments.length == 1) {
+      final path = uri.pathSegments[0];
+      switch (path) {
+        case 'splash':
+          replaceAll(SplashPageConfig);
+          break;
+        case 'login':
+          replaceAll(LoginPageConfig);
+          break;
+        case 'createAccount':
+          setPath([
+            _createPage(const Login(), LoginPageConfig),
+            _createPage(const CreateAccount(), CreateAccountPageConfig)
+          ]);
+          break;
+        case 'listItems':
+          replaceAll(ListItemsPageConfig);
+          break;
+        case 'cart':
+          setPath([
+            _createPage(const ListItems(), ListItemsPageConfig),
+            _createPage(const Cart(), CartPageConfig)
+          ]);
+          break;
+        case 'checkout':
+          setPath([
+            _createPage(const ListItems(), ListItemsPageConfig),
+            _createPage(const Checkout(), CheckoutPageConfig)
+          ]);
+          break;
+        case 'settings':
+          setPath([
+            _createPage(const ListItems(), ListItemsPageConfig),
+            _createPage(const Settings(), SettingsPageConfig)
+          ]);
+          break;
+      }
+    }
   }
 }

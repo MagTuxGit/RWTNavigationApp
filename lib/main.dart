@@ -35,6 +35,7 @@ import 'package:navigation_app/router/router_delegate.dart';
 import 'package:navigation_app/router/shopping_parser.dart';
 import 'package:navigation_app/router/ui_pages.dart';
 import 'package:provider/provider.dart';
+import 'package:uni_links/uni_links.dart';
 
 import 'app_state.dart';
 
@@ -57,7 +58,7 @@ class _MyAppState extends State<MyApp> {
   final parser = ShoppingParser();
   late ShoppingBackButtonDispatcher backButtonDispatcher;
 
-  // TODO Add Subscription
+  StreamSubscription? _linkSubscription;
 
   _MyAppState() {
     delegate = ShoppingRouterDelegate(appState);
@@ -73,13 +74,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    // TODO Dispose of Subscription
+    _linkSubscription?.cancel();
     super.dispose();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    // TODO Attach a listener to the Uri links stream
+    // Attach a listener to the Uri links stream
+    _linkSubscription = uriLinkStream.listen((Uri? uri) {
+      if (!mounted) return;
+      setState(() {
+        delegate.parseRoute(uri);
+      });
+    }, onError: (Object err) {
+      print('Got error $err');
+    });
   }
 
   @override
