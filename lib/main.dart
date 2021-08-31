@@ -30,6 +30,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:navigation_app/router/router_delegate.dart';
+import 'package:navigation_app/router/shopping_parser.dart';
+import 'package:navigation_app/router/ui_pages.dart';
 import 'package:provider/provider.dart';
 import 'package:uni_links/uni_links.dart';
 
@@ -51,12 +54,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final appState = AppState();
 
-  // TODO Create Delegate, Parser and Back button Dispatcher
+  late ShoppingRouterDelegate delegate;
+  final parser = ShoppingParser();
 
   // TODO Add Subscription
 
   _MyAppState() {
-    // TODO Setup Router & dispatcher
+    delegate = ShoppingRouterDelegate(appState);
+    delegate.setNewRoutePath(SplashPageConfig);
   }
 
   @override
@@ -81,14 +86,17 @@ class _MyAppState extends State<MyApp> {
     // TODO Add Router
     return ChangeNotifierProvider<AppState>(
       create: (_) => appState,
-      child: MaterialApp(
+      // child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Navigation App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: const Splash(),
+        //   home: const Splash(),
+        routerDelegate: delegate,
+        routeInformationParser: parser,
       ),
     );
   }
