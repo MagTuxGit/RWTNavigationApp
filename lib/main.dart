@@ -34,10 +34,8 @@ import 'package:navigation_app/router/router_delegate.dart';
 import 'package:navigation_app/router/shopping_parser.dart';
 import 'package:navigation_app/router/ui_pages.dart';
 import 'package:provider/provider.dart';
-import 'package:uni_links/uni_links.dart';
 
 import 'app_state.dart';
-import 'ui/splash.dart';
 
 void main() {
   runApp(const MyApp());

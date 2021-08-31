@@ -38,7 +38,8 @@ class ShoppingParser extends RouteInformationParser<PageConfiguration> {
   }
 
   /// this is optional for web only
-  /*
+  /// but Flutter throws without this
+  /// Router.routeInformationParser returns a null RouteInformation. If you opt for route information reporting, the routeInformationParser must not report null for a given configuration.
   @override
   RouteInformation restoreRouteInformation(PageConfiguration configuration) {
     switch (configuration.uiPage) {
@@ -62,5 +63,4 @@ class ShoppingParser extends RouteInformationParser<PageConfiguration> {
         return const RouteInformation(location: SplashPath);
     }
   }
-   */
 }

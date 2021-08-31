@@ -28,7 +28,6 @@
  * THE SOFTWARE.
  */
 
-import 'package:flutter/cupertino.dart';
 import 'package:navigation_app/app_state.dart';
 
 const String SplashPath = '/splash';
