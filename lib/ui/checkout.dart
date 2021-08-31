@@ -34,6 +34,9 @@ import '../app_state.dart';
 import '../router/ui_pages.dart';
 
 class Checkout extends StatelessWidget {
+
+  const Checkout({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context, listen: false);

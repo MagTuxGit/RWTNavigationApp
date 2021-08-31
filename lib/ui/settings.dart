@@ -34,6 +34,9 @@ import '../app_state.dart';
 import '../router/ui_pages.dart';
 
 class Settings extends StatelessWidget {
+
+  const Settings({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context, listen: false);
@@ -64,5 +67,4 @@ class Settings extends StatelessWidget {
       ),
     );
   }
-
 }

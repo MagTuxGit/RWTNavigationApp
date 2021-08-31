@@ -33,6 +33,9 @@ import 'package:provider/provider.dart';
 import '../app_state.dart';
 
 class CreateAccount extends StatefulWidget {
+
+  const CreateAccount({Key? key}) : super(key: key);
+
   @override
   _CreateAccountState createState() => _CreateAccountState();
 }

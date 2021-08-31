@@ -35,7 +35,7 @@ import '../router/ui_pages.dart';
 class Details extends StatelessWidget {
   final int id;
 
-  const Details(this.id);
+  const Details(this.id, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
