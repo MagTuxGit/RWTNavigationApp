@@ -55,28 +55,28 @@ class PageConfiguration {
   final String key;
   final String path;
   final Pages uiPage;
-  final PageAction? currentPageAction;
+  PageAction? currentPageAction;
 
-  const PageConfiguration(
+  PageConfiguration(
       {required this.key,
       required this.path,
       required this.uiPage,
       this.currentPageAction});
 }
 
-const PageConfiguration SplashPageConfig =
+PageConfiguration SplashPageConfig =
     PageConfiguration(key: 'Splash', path: SplashPath, uiPage: Pages.Splash);
-const PageConfiguration LoginPageConfig =
+PageConfiguration LoginPageConfig =
     PageConfiguration(key: 'Login', path: LoginPath, uiPage: Pages.Login);
-const PageConfiguration CreateAccountPageConfig = PageConfiguration(
+PageConfiguration CreateAccountPageConfig = PageConfiguration(
     key: 'CreateAccount', path: CreateAccountPath, uiPage: Pages.CreateAccount);
-const PageConfiguration ListItemsPageConfig = PageConfiguration(
+PageConfiguration ListItemsPageConfig = PageConfiguration(
     key: 'ListItems', path: ListItemsPath, uiPage: Pages.List);
-const PageConfiguration DetailsPageConfig =
+PageConfiguration DetailsPageConfig =
     PageConfiguration(key: 'Details', path: DetailsPath, uiPage: Pages.Details);
-const PageConfiguration CartPageConfig =
+PageConfiguration CartPageConfig =
     PageConfiguration(key: 'Cart', path: CartPath, uiPage: Pages.Cart);
-const PageConfiguration CheckoutPageConfig = PageConfiguration(
+PageConfiguration CheckoutPageConfig = PageConfiguration(
     key: 'Checkout', path: CheckoutPath, uiPage: Pages.Checkout);
-const PageConfiguration SettingsPageConfig = PageConfiguration(
+PageConfiguration SettingsPageConfig = PageConfiguration(
     key: 'Settings', path: SettingsPath, uiPage: Pages.Settings);
