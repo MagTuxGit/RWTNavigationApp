@@ -30,6 +30,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:navigation_app/router/back_dispatcher.dart';
 import 'package:navigation_app/router/router_delegate.dart';
 import 'package:navigation_app/router/shopping_parser.dart';
 import 'package:navigation_app/router/ui_pages.dart';
@@ -54,12 +55,14 @@ class _MyAppState extends State<MyApp> {
 
   late ShoppingRouterDelegate delegate;
   final parser = ShoppingParser();
+  late ShoppingBackButtonDispatcher backButtonDispatcher;
 
   // TODO Add Subscription
 
   _MyAppState() {
     delegate = ShoppingRouterDelegate(appState);
     delegate.setNewRoutePath(SplashPageConfig);
+    backButtonDispatcher = ShoppingBackButtonDispatcher(delegate);
   }
 
   @override
@@ -95,6 +98,7 @@ class _MyAppState extends State<MyApp> {
         //   home: const Splash(),
         routerDelegate: delegate,
         routeInformationParser: parser,
+        backButtonDispatcher: backButtonDispatcher,
       ),
     );
   }
